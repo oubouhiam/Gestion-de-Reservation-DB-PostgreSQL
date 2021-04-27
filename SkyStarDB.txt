@@ -1,0 +1,70 @@
+//Creation des tables---------
+
+ CREATE TABLE CLIENTS (
+     	numPass VARCHAR(20) PRIMARY KEY, 
+ 	nom VARCHAR(15) NOT NULL,
+ 	ville VARCHAR(15) NOT NULL
+ );
+
+ CREATE TABLE CHAMBRES(
+         numC NUMERIC(20) PRIMARY KEY, 
+         lits NUMERIC(15) NOT NULL DEFAULT 2,
+         prix NUMERIC(15) NOT NULL
+);
+
+ CREATE TABLE RESERVATIONS(
+      	numR NUMERIC(20) PRIMARY KEY, 
+	numPass VARCHAR(20),
+       	numC NUMERIC(20) NOT NULL,
+       	arrivée date NOT NULL,
+       	départ date
+      CONSTRAINT fk_RESERVATIONS FOREIGN KEY(numPass) REFERENCES CLIENTS(numPass) ON DELETE CASCADE ON UPDATE CASCADE,
+      CONSTRAINT fk_CHAMBRES FOREIGN KEY(numC) REFERENCES CHAMBRES(numC) ON DELETE CASCADE ON UPDATE CASCADE
+
+ );
+
+
+
+//Insertion des clients---------
+
+INSERT INTO clients VALUES('DD12345635', 'Oubouhia', 'Sidi Ifni');
+INSERT INTO clients VALUES('AB34256', 'Mohamed', 'Tiznit');
+INSERT INTO clients VALUES('AD586868', 'Ismail', 'Agadir')
+
+//Insertion des chambres-----------
+
+INSERT INTO chambres VALUES (1,1,200);
+INSERT INTO chambres VALUES (2,2,400);
+INSERT INTO chambres VALUES (3,3,800);
+INSERT INTO chambres VALUES (4,4,1000);
+INSERT INTO chambres VALUES (5,5,1200);
+INSERT INTO chambres VALUES (6,6,1500);
+
+
+//Insertion des Reservations-----------
+
+
+INSERT INTO reservations VALUES (1, 'DD12345635', 1, '2021-04-01', '2021-04-30');
+INSERT INTO reservations VALUES (2, 'AB34256', 2, '2021-05-01', '2021-05-30');
+INSERT INTO reservations VALUES (3, 'AD586868', 3, '2021-06-01', '2021-06-30');
+INSERT INTO reservations VALUES (4, 'DD12345635', 4, '2021-07-01', '2021-07-30');
+INSERT INTO reservations VALUES (5, 'AD586868', 4, '2021-08-01', '2021-08-30');
+INSERT INTO reservations VALUES (6, 'DD12345635', 1, '2021-09-01', '2021-09-30');
+INSERT INTO reservations VALUES (7, 'AB34256', 3, '2021-10-01', '2021-10-30');
+INSERT INTO reservations VALUES (8, 'AB34256', 1, '2021-08-01', '2021-08-30');
+INSERT INTO reservations VALUES (9, 'AB34256', 5, '2021-08-01', '2021-08-30');
+INSERT INTO reservations VALUES (10, 'AB34256', 3, '2021-08-01', '2021-08-30');
+INSERT INTO reservations VALUES (11, 'AB34256', 2, '2021-08-01', '2021-08-30')
+
+
+//Affiche les chambres réservées pendant le mois d'Août-------------
+
+
+
+
+
+
+
+
+
+
